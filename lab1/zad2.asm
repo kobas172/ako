@@ -1,10 +1,10 @@
-; wczytywanie i wyœwietlanie tekstu wielkimi literami
-; (inne znaki siê nie zmieniaj¹)
+; wczytywanie i wyÅ›wietlanie tekstu wielkimi literami
+; (inne znaki siÄ™ nie zmieniajÄ…)
 .686
 .model flat
 extern _ExitProcess@4 : PROC
-extern __write : PROC ; (dwa znaki podkreœlenia)
-extern __read : PROC ; (dwa znaki podkreœlenia)
+extern __write : PROC ; (dwa znaki podkreÅ›lenia)
+extern __read : PROC ; (dwa znaki podkreÅ›lenia)
 extern _MessageBoxW@16 : PROC
 public _main
 .data
@@ -15,14 +15,14 @@ nowa_linia		db 10
 indeks			dd ?
 .code
 _main PROC
-; kody ASCII napisanego tekstu zosta³y wprowadzone
+; kody ASCII napisanego tekstu zostaÅ‚y wprowadzone
 ; do obszaru 'magazyn'
-; funkcja read wpisuje do rejestru EAX liczbê
-; wprowadzonych znaków
+; funkcja read wpisuje do rejestru EAX liczbÄ™
+; wprowadzonych znakÃ³w
 	;mov liczba_znakow, eax
-; rejestr ECX pe³ni rolê licznika obiegów pêtli
+; rejestr ECX peÅ‚ni rolÄ™ licznika obiegÃ³w pÄ™tli
 	mov ecx, 44
-	mov ebx, 0 ; indeks pocz¹tkowy
+	mov ebx, 0 ; indeks poczÄ…tkowy
 	mov al, 0
 	mov edi, 0
 	mov eax, 0
@@ -48,7 +48,7 @@ dodanie: mov magazyn2[edi], dx
 	inc edi
 
 	dalej: inc ebx ; inkrementacja indeksu
-	loop ptl ; sterowanie pêtl¹
+	loop ptl ; sterowanie pÄ™tlÄ…
 
 	inc edi
 	inc edi
@@ -58,7 +58,7 @@ dodanie: mov magazyn2[edi], dx
 	;mov indeks, edi
 
 	mov ecx, 44
-	mov ebx, 0 ; indeks pocz¹tkowy
+	mov ebx, 0 ; indeks poczÄ…tkowy
 	mov al, 0
 	mov eax, 0
 
@@ -94,7 +94,7 @@ dodaniespacji2:
 	jmp dalej1
 
 	dalej1: inc ebx ; inkrementacja indeksu
-	loop ptl1 ; sterowanie pêtl¹
+	loop ptl1 ; sterowanie pÄ™tlÄ…
 	
 	inc edi
 	inc edi
@@ -103,7 +103,7 @@ dodaniespacji2:
 	inc edi
 
 	mov ecx, 44
-	mov ebx, 0 ; indeks pocz¹tkowy
+	mov ebx, 0 ; indeks poczÄ…tkowy
 	mov al, 0
 	mov eax, 0
 
@@ -124,15 +124,15 @@ wyjscie: mov al, 1
 
 
 	dalej2: inc ebx ; inkrementacja indeksu
-	loop ptl2 ; sterowanie pêtl¹
+	loop ptl2 ; sterowanie pÄ™tlÄ…
 
-; wyœwietlenie przekszta³conego tekstu
+; wyÅ›wietlenie przeksztaÅ‚conego tekstu
 	push 0
 	push OFFSET tytul
 	push OFFSET magazyn2
 	push 0
 	call _MessageBoxW@16
 	push 0
-	call _ExitProcess@4 ; zakoñczenie programu
+	call _ExitProcess@4 ; zakoÅ„czenie programu
 _main ENDP
 END
